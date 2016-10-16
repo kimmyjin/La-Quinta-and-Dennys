@@ -14,10 +14,14 @@ get_url = function(limit, zip_code, radius)
   )
 }
 
-LA = get_url(limit=1000, zip_code=90210, radius=500)
-Durham = get_url(limit=1000, zip_code=27705, radius=500)
+LA = get_url(limit=1000, zip_code=90210, radius=1000)
+Durham = get_url(limit=1000, zip_code=27705, radius=1000)
+Chicago = get_url(limit=1000, zip_code=60602, radius=1000)
+Hawaii = get_url(limit=1000, zip_code=96701, radius=1000)
+
 
 dir.create("data/dennys",recursive = TRUE, showWarnings = FALSE)
 
 download.file(LA, dest="data/dennys/LA.xml")
 download.file(Durham, dest="data/dennys/Durham.xml")
+download.file(Chicago, dest="data/dennys/Chicago.xml")
