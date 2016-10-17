@@ -1,5 +1,5 @@
 library(rvest)
-de.files = dir("data/dennys/", "html", full.names = TRUE)
+de.files = dir("data/dennys/", "xml", full.names = TRUE)
 dennys = list()
 for(i in seq_along(de.files)){
   file = de.files[i]
@@ -26,6 +26,10 @@ for(i in seq_along(de.files)){
     html_nodes("state") %>% 
     html_text() %>%
     str_trim()
+  country = dennys_info %>% 
+    html_nodes("country") %>% 
+    html_text() %>%
+    str_trim()
   latitude = dennys_info %>% 
     html_nodes("latitude") %>% 
     html_text() %>% 
@@ -45,12 +49,18 @@ for(i in seq_along(de.files)){
     res[[j]] = data_frame(
       location_name = location_name[j],
       address = paste(address[j],city[j], paste(state[j],zipcode[j]), sep =", \n"),
+      country = country[j],
       phone = phone[j],
       lat = latitude[j],
       long = longitude[j]
     )
   }
-  rest = bind_rows(res)
-  dennys <- union(dennys, rest)
-  #dennys = res[!duplicated(res), ]
+  dennys <- union(dennys, res)
 }
+dennys = bind_rows(dennys)
+
+dennys.US <- dennys %>%
+  filter(dennys$country == "US")
+
+
+save(dennys.US,file="data/dennys.Rdata")
