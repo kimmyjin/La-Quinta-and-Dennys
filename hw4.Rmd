@@ -1,0 +1,24 @@
+---
+title: "Dennys_LQ"
+author: 
+date: "10/12/2016"
+output: html_document
+---
+
+```{r}
+library(fields)
+
+load("data/dennys.Rdata")
+load("data/lq.Rdata")
+
+count = 0
+for(i in seq_along(dennys.US[[1]])){
+dist = rdist.earth.vec(matrix(c(as.numeric(dennys.US$long)[i],as.numeric(dennys.US$lat)[i]), ncol=2),matrix(c(as.numeric(hotels$long),as.numeric(hotels$lat)), ncol=2),miles=TRUE, R = 6371)
+  if(min(dist) < 1){
+    count = count +1
+  }
+}
+count
+rate = count/length(hotels[[1]])
+rate
+```
