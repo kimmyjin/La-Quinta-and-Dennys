@@ -65,7 +65,16 @@ for(i in seq_along(files))
   )
 }
 
-hotels = bind_rows(res)
+hotels = bind_rows(res) 
+for(i in seq_along(files))
+  {
+  if(str_detect(hotels$phone[i], "1-") == FALSE)
+     {
+       hotels[-i,] 
+  }
+}
+
+
 
 dir.create("data/",showWarnings = FALSE)
 save(hotels, file="data/lq.Rdata")
