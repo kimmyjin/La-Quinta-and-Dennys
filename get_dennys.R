@@ -21,7 +21,7 @@ Washington = get_url(limit=1000, zip_code=20001, radius=5000)
 
 dir.create("data/dennys",recursive = TRUE, showWarnings = FALSE)
 
-download.file(LA, dest="data/dennys/LA.xml")
-download.file(Hawaii, dest="data/dennys/Hawaii.xml")
-download.file(Utah, dest="data/dennys/Utah.xml")
-download.file(Washington, dest="data/dennys/Washington.xml")
+download.file(LA, dest="data/dennys/LA.xml", quiet = TRUE)
+download.file(Hawaii, dest="data/dennys/Hawaii.xml", quiet = TRUE)
+download.file(Utah, dest="data/dennys/Utah.xml", quiet = TRUE)
+download.file(Washington, dest="data/dennys/Washington.xml", quiet = TRUE)
