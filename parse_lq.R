@@ -63,16 +63,27 @@ for(i in seq_along(files))
     lat   = lat_long[,2],
     long  = lat_long[,3]
   )
+ 
+  if(str_detect(res[[i]]$phone,"1-") == FALSE)
+  {
+    res[[i]]$phone = NA
+  }
+  if(str_detect(res[[i]]$address,"BC V6X 1C4") == TRUE)
+  {
+    res[[i]]$phone = NA
+  }
+  if(str_detect(res[[i]]$address,"ON L1H 1B4") ==TRUE)
+  {
+    res[[i]]$phone = NA
+  }
+  if(str_detect(res[[i]]$address,"Ejercito Nacional") ==TRUE)
+  {
+    res[[i]]$phone = NA
+  }
 }
 
 hotels = bind_rows(res) 
-for(i in seq_along(files))
-  {
-  if(str_detect(hotels$phone[i], "1-") == FALSE)
-     {
-       hotels[-i,] 
-  }
-}
+hotels = na.omit(hotels)
 
 
 
