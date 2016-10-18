@@ -31,19 +31,19 @@ for(i in seq_along(files))
     str_replace("Rooms: ", "") %>%
     as.integer()
   
-  features = page %>%                                     
+  features = page %>%
     html_nodes(".pptab_contentL li") %>%
     html_text() %>%
-    paste(collapse=" ") 
-  
+    paste(collapse=" ")
+
   swim = features %>% str_detect("Swimming Pool")       #swimming pools
   internet = features %>% str_detect("Internet")        #internet availability
-  
-  floors = page %>%                                     #floors  
+
+  floors = page %>%                                     #floors
     html_nodes(".hotelFeatureList li:nth-child(1)") %>%
     html_text() %>%
     str_replace("Floors:","") %>%
-    as.numeric()  
+    as.numeric()
   
   # Google link includes latitude first then longitude
   lat_long = page %>%
@@ -59,7 +59,7 @@ for(i in seq_along(files))
     n_rooms = n_rooms,
     swimming_pool = ifelse(swim==TRUE,"Yes","No"),
     internet = ifelse(internet==TRUE,"Yes","No"),
-    floors,    
+    floors,
     lat   = lat_long[,2],
     long  = lat_long[,3]
   )
