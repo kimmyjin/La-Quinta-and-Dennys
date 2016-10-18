@@ -27,3 +27,27 @@ count
 rate = count/length(hotels[[1]])
 rate
 ```
+```{r}
+count = 0
+for(i in seq_along(dennys.US[[1]]))
+  {
+  rad <- pi/180
+  a1 <- as.numeric(dennys.US$lat)[i] * rad
+  a2 <- as.numeric(dennys.US$long)[i] * rad
+  b1 <- as.numeric(hotels$lat) * rad
+  b2 <- as.numeric(hotels$long) * rad
+  d_long <- b2 - a2
+  d_lat <- b1 - a1
+  a <- (sin(d_lat/2))^2 + cos(a1) * cos(b1) * (sin(d_long/2))^2
+  c <- 2 * atan2(sqrt(a), sqrt(1 - a))
+  R <- 6371
+  d <- R * c
+  if(min(d) < 1){
+    count = count +1
+  }
+}
+count
+rate = count/length(hotels[[1]])
+rate
+```
+
