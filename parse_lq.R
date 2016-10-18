@@ -63,9 +63,23 @@ for(i in seq_along(files))
     lat   = lat_long[,2],
     long  = lat_long[,3]
   )
+  validate ="^([0-9]( |-)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})$"
+  if(str_detect(res[[i]]$phone,validate) == FALSE)
+  {
+    res[[i]]$phone = NA
+  }
+  validate1 ="[0-9]{5}(-[0-9]{4})?(?!.*[0-9]{5}(-[0-9]{4})?)"
+  if(str_detect(res[[i]]$address,validate1) == FALSE)
+  {
+    res[[i]]$phone = NA
+  }
 }
 
-hotels = bind_rows(res)
+hotels = bind_rows(res) 
+hotels = na.omit(hotels)
 
-dir.create("data/",showWarnings = FALSE)
+
+
+
+dir.create("data/", showWarnings = FALSE)
 save(hotels, file="data/lq.Rdata")

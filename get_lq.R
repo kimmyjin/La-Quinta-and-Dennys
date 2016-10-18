@@ -8,7 +8,8 @@ page = read_html(url)
 hotel_pages = page %>% 
   html_nodes("#hotelListing .col-sm-12 a") %>% 
   html_attr("href") %>% 
-  .[!is.na(.)] 
+  .[!is.na(.)] %>% 
+  unique()
 
 dir.create("data/lq",recursive = TRUE,showWarnings = FALSE)
 
@@ -19,3 +20,6 @@ for(hotel_page in hotel_pages)
                 destfile = file.path("data/lq",hotel_page),
                 quiet = TRUE)
 }
+
+hotel_pages1 = unique(hotel_pages)
+
