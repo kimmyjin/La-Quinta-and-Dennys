@@ -63,20 +63,13 @@ for(i in seq_along(files))
     lat   = lat_long[,2],
     long  = lat_long[,3]
   )
- 
-  if(str_detect(res[[i]]$phone,"1-") == FALSE)
+  validate ="^([0-9]( |-)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})$"
+  if(str_detect(res[[i]]$phone,validate) == FALSE)
   {
     res[[i]]$phone = NA
   }
-  if(str_detect(res[[i]]$address,"BC V6X 1C4") == TRUE)
-  {
-    res[[i]]$phone = NA
-  }
-  if(str_detect(res[[i]]$address,"ON L1H 1B4") ==TRUE)
-  {
-    res[[i]]$phone = NA
-  }
-  if(str_detect(res[[i]]$address,"Ejercito Nacional") ==TRUE)
+  validate1 ="[0-9]{5}(-[0-9]{4})?(?!.*[0-9]{5}(-[0-9]{4})?)"
+  if(str_detect(res[[i]]$address,validate1) == FALSE)
   {
     res[[i]]$phone = NA
   }
@@ -87,5 +80,6 @@ hotels = na.omit(hotels)
 
 
 
-dir.create("data/",showWarnings = FALSE)
+
+dir.create("data/", showWarnings = FALSE)
 save(hotels, file="data/lq.Rdata")
