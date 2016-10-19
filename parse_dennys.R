@@ -1,4 +1,7 @@
 library(rvest)   #read packages
+library(stringr)
+library(tibble)
+library(dplyr)
 de.files = dir("data/dennys/", "xml", full.names = TRUE)    #collect all relative paths in dennys folder
 dennys = list()   #create an empty list
 for(i in seq_along(de.files)){    #iteration over each xml files inside
