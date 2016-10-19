@@ -4,13 +4,14 @@ author:
 date: "10/12/2016"
 output: html_document
 ---
-<<<<<<< HEAD
+
 ###Task 1 – Scraping La Quinta
 
 get_lq
 
 In order to get each La Quinta’s information, our first step was to obtain and download every La Quinta hotel’s HTML data. Specifically, we used the tool “SelectorGadget” and R package rvest to select each La Quinta’s webpage link from La Quinta's hotel listings page, which was relative address. Then, we created a directory, and used the absolute address to download each La Quinta hotel’s HTML file. We noticed duplication in La Quinta's hotel listings page, therefore function unique( ) was applied to avoid duplicated records.
 
+<<<<<<< HEAD
 ###Task2 – Scraping Denny’s
 
 get_dennys
@@ -20,8 +21,16 @@ As mentioned, the Denny’s site uses 3rd party service to display its locations
 parse_dennys
 
 First, we retrieve our datafile called `de.files` from the data folder that get_dennys saved four xml files and create a empty list called `dennys`. In each of this file, we have 1000 Dennys around the center location within 5000 miles. Second, we would iterate over each of the data file. In each iteration, we would record location name, address, zip code, city, state, country, latitude, longitude and phone number for all of 1000 restaurant Third, we would create a temporary list called `res`, making each restaurant's information as a dataframe stored in `res`. Then we would union `dennys` and `res` to retrieve the unique information about Denny's. Fourth, after complete all iterations, we would bind all of the dataframes which contain information about each Denny's restaurant by rows. Finally, we would filter out the dennys only in the US called `dennys.US`, which will be used for our task 3 analysis. 
-=======
->>>>>>> e574f43ce0a76f10b2a2b8e18f09fb3e868563a3
+
+parse_la
+
+
+###Task2 – Scraping Denny’s
+
+get_dennys
+
+As mentioned, the Denny’s site uses 3rd party service to display its locations. After identifying some specific parts (limit,zip_code,radius) of its API, noticing that up to 1000 Denny’s could be found at a time, and googling the total number of Denny’s, we chose LA (zip code: 90210), Hawaii(zip code: 96701), Utah (zip code: 84101) and Washington (zip code: 20001) as anchorages/centers, set radius equal to 5000 miles to cover all Denny’s in US, and recorded their URLs. Then, we created a directory, and used the above URLs (absolute address) to download our four centers’ XML files, which covered all the location information of each Denny’s in US.
+
 
 ```{r}
 library(fields)
@@ -31,12 +40,11 @@ load("data/lq.Rdata")
 
 count = 0
 for(i in seq_along(hotels[[1]])){
-  dist = rdist.earth.vec(matrix(c(as.numeric(hotels$long)[i],
-                                  as.numeric(hotels$lat)[i]),ncol=2),
-                         matrix(c(as.numeric(dennys.US$long),
+  dist = rdist.earth.vec(matrix(c(as.numeric(dennys.US$long),
                                   as.numeric(dennys.US$lat)),ncol=2),
-                         miles=TRUE, 
-                         R = 6371)
+                         matrix(c(as.numeric(hotels$long)[i],
+                                  as.numeric(hotels$lat)[i]),ncol=2),
+                         R=3959)
   if(min(dist) < 1){
     count = count +1
   }
@@ -45,3 +53,29 @@ count
 rate = count/length(hotels[[1]])
 rate
 ```
+
+
+```{r}
+count = 0
+for(i in seq_along(hotels[[1]]))
+  {
+  rad <- pi/180
+  a1 <- as.numeric(dennys.US$lat) * rad
+  a2 <- as.numeric(dennys.US$long) * rad
+  b1 <- as.numeric(hotels$lat)[i] * rad
+  b2 <- as.numeric(hotels$long)[i] * rad
+  d_long <- b2 - a2
+  d_lat <- b1 - a1
+  a <- (sin(d_lat/2))^2 + cos(a1) * cos(b1) * (sin(d_long/2))^2
+  c <- 2 * atan2(sqrt(a), sqrt(1 - a))
+  R <- 3959
+  d <- R * c
+  if(min(d) < 1){
+    count = count +1
+  }
+}
+count
+rate = count/length(hotels[[1]])
+rate
+```
+
