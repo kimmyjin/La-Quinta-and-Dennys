@@ -69,7 +69,13 @@ rate.total  #Calculate the rate that a Denny's exists in 1-mile range of a La Qu
 
 
 df = data_frame(radius, rate.total)
-ggplot(data = df, aes(x = df$radius, y = df$rate.total)) + geom_point(aes(colour = df$radius)) + geom_line(aes(colour = df$radius), size = 1) + xlab("Minimum Distance") +ylab("Rate") + ggtitle("Cumulative Distribution between Minimum Distance and Rate")
+ggplot(data = df, aes(x = df$radius, y = df$rate.total)) + 
+  geom_point(aes(colour = df$radius)) + 
+  geom_line(aes(colour = df$radius), size = 1) + 
+  xlab("Minimum Distance") +
+  ylab("Rate") + 
+  ggtitle("Cumulative Distribution between Minimum Distance and Rate")
+
 hist(min.dist, breaks = 500, freq = FALSE, xlim = c(0,100), ylim = c(0, 0.4), main = "Distance between La Quinta and Nearest Denny's")
 ```
 
