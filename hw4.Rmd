@@ -33,6 +33,7 @@ Since the Spanish meaning of La Quinta is “next to Denny’s,” we use each L
 
 For visualization, we generate two plots: one scatter plot and one histogram. For the scatter plot, the x-axis represents the range of radius from 0.1 to 1 mile, increasing by 0.1. The y-axis represents the rate of the number of dennys near la quinta within that radius. From the histogram, we can see that the increasing of radius will increase the rate. However, by drawing the line of all points, we could also see that the increasing rate, which is the tangent of the line, is slowly decreasing. 
 
+For the histogram, x-axis represents the distance of all La Quinta to their nearest Dennys and y-axis represent the density of distance. We would conclude that the idea of La Quinta would be close to Dennys makes sense in some extent depending on how we define the distance. 
 
 ```{r}
 load("data/dennys.Rdata") #Load Denny's Data
