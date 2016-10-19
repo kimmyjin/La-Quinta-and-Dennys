@@ -50,6 +50,7 @@ count
 rate = count/length(hotels[[1]])
 rate
 ```
+Since the Spanish meaning of La Quinta is “next to Denny’s,” we use each La Quinta as center and then find out how many Denny’s are in 1-mile range. In order to calculate the distance between La Quinta and Denny’s, we first load the location information of La Quinta and Denny’s. We create a loop to generate the pairwise distances between one La Quinta and all Denny’s given their longitude and latitude. The formula used in the loop is inspired by “fossil” package. If the minimum distance between a La Quinta and a Denny’s is less than 1 mile, we will count it. Finally, we calculate the rate that one Denny’s exists in 1-mile range of one La Quinta. 
 
 
 ```{r}
