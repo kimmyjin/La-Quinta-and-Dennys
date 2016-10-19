@@ -24,7 +24,7 @@ parse_dennys
 First, we retrieve our datafile called `de.files` from the data folder that get_dennys saved four xml files and create a empty list called `dennys`. In each of this file, we have 1000 Dennys around the center location within 5000 miles. Second, we would iterate over each of the data file. In each iteration, we would record location name, address, zip code, city, state, country, latitude, longitude and phone number for all of 1000 restaurant Third, we would create a temporary list called `res`, making each restaurant's information as a dataframe stored in `res`. Then we would union `dennys` and `res` to retrieve the unique information about Denny's. Fourth, after complete all iterations, we would bind all of the dataframes which contain information about each Denny's restaurant by rows. Finally, we would filter out the dennys only in the US called `dennys.US`, which will be used for our task 3 analysis. 
 
 
-###Task2 – Distance Analysis
+###Task3 – Distance Analysis
 
 
 ```{r}
