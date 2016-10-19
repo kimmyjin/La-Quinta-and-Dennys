@@ -13,6 +13,8 @@ In order to get each La Quinta’s information, our first step was to obtain and
 
 parse_lq
 
+First, we retrieve full paths of all files in `lq` folder and save them to `files`, and create an empty list called `res`. From the get_lq, we know there are 902 websites of hotel stored in `lq` folder. Then, we use a for loop to iterate over each of hotel website, and in each iteration collect 10 features of the hotel: `location_name` saving the name of each hotel, `address` saving the address of each hotel, `phone` saving the telephone number of each hotel, `fax` saving the fax number of each hotel, `n_rooms` saving the number of rooms of each hotel, `swimming_pool` showing whether does hotel have swimming pools, `internet` showing whether does hotel provide internet connection, `floors` saving the number of floors of each hotel,  `lat` saving the latitude of each hotel and `long` saving the longitude of each hotel. All these 10 features are saved into empty list `res` during each iteration, and at the end of each iteration, we define `res` as a dataframe which contains 10 columns and each column corresponds to one feature of hotel. Since we only need to colloct la quinta hotels in the U.S, we write two tests to remove la quinta hotels in other countries. First, we use the regular expression for US and Cananian telephone number to remove la qunita hotels which are not in these two countries. Second, we use the regular expression for US zipcode to remove la qunita hotels in Canada. Next, we bind all of the dataframes `res` which contain information about each la quinta hotel by row. Finally, we save the dataframe for la quinta hotels as `lq.Rdata` in `data` folder
+
 ###Task2 – Scraping Denny’s
 
 get_dennys

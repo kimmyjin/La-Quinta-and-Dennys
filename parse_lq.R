@@ -4,7 +4,7 @@ library(stringr)
 library(tibble)
 library(dplyr)
 
-files = dir("data/lq/", "html", full.names = TRUE)        #collect all relative paths in lq folder
+files = dir("data/lq/", "html", full.names = TRUE)    #collect all files with full path from lq folder
 
 res = list()   #create an empty list
 
@@ -89,5 +89,5 @@ for(i in seq_along(files))
 hotels = bind_rows(res)    #bind all rows together
 hotels = na.omit(hotels)   #remove all rows containing NA value
 
-dir.create("data/", showWarnings = FALSE)    #create directory in data folder
+dir.create("data/", showWarnings = FALSE)   
 save(hotels, file="data/lq.Rdata")           #save the dataframe hotels as lq.Rdata in data folder
