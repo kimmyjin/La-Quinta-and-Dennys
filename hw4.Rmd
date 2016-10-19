@@ -54,7 +54,7 @@ for(i in seq_along(hotels[[1]])) #Create a loop to generate pairwise distances
   a <- (sin(d_lat/2))^2 + cos(a1) * cos(b1) * (sin(d_long/2))^2 #Calculate the haversine of the central angle between two points
   R <- 3959 #Set radius of Earth
   d <- R * 2 * atan2(sqrt(a), sqrt(1 - a)) #Apply inverse haversine to calculate the spatial distance
-  min.dist[j] = min(d)
+  min.dist[i] = min(d)
   if(min(d) < radius[j]){
     count = count +1 #Count the number of La Quinta next to a Denny's
   }
