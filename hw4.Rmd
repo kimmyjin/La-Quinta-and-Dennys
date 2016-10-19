@@ -31,24 +31,39 @@ First, we retrieve our datafile called `de.files` from the data folder that get_
 
 ```{r}
 library(fields)
-
+library(ggplot2)
 load("data/dennys.Rdata")
 load("data/lq.Rdata")
 
-count = 0
-for(i in seq_along(hotels[[1]])){
-  dist = rdist.earth.vec(matrix(c(as.numeric(dennys.US$long),
+radius = seq(0.1, 1, 0.1)
+count.total = rep(NA, 10)
+min.dist = rep(NA, length(hotels[[1]]))
+for(j in seq_along(radius)){
+  count = 0
+  for(i in seq_along(hotels[[1]])){
+    dist = rdist.earth.vec(matrix(c(as.numeric(dennys.US$long),
                                   as.numeric(dennys.US$lat)),ncol=2),
                          matrix(c(as.numeric(hotels$long)[i],
                                   as.numeric(hotels$lat)[i]),ncol=2),
                          R=3959)
-  if(min(dist) < 1){
-    count = count +1
+    min.dist[i] = min(dist)
+      if(min(dist) < radius[j]){
+        count = count +1
+    }
+    count.total[j] = count
   }
 }
-count
-rate = count/length(hotels[[1]])
+count.total
+rate = count.total/length(hotels[[1]])
 rate
+df = data_frame(radius, count.total)
+
+
+ggplot(data = df, aes(x = df$radius, y = df$count.total)) + geom_point() + geom_line()
+hist(min.dist, breaks = 500, freq = FALSE, xlim = c(0,100), ylim = c(0, 0.4))
+
+
+
 ```
 Since the Spanish meaning of La Quinta is “next to Denny’s,” we use each La Quinta as center and then find out how many Denny’s are in 1-mile range. In order to calculate the distance between La Quinta and Denny’s, we first load the location information of La Quinta and Denny’s. We create a loop to generate the pairwise distances between one La Quinta and all Denny’s given their longitude and latitude. The formula used in the loop is inspired by “fossil” package. If the minimum distance between a La Quinta and a Denny’s is less than 1 mile, we will count it. Finally, we calculate the rate that one Denny’s exists in 1-mile range of one La Quinta. 
 
