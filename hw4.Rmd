@@ -37,8 +37,8 @@ load("data/dennys.Rdata") #Load Denny's Data
 load("data/lq.Rdata") #Load La Quinta Data
 
 
-radius = seq(0.1, 1, 0.1)
-count.total = rep(NA, 10)
+radius = seq(0.1, 1, 0.1)   #create radius 
+rate.total = rep(NA, 10)
 min.dist = rep(NA, length(hotels[[1]]))
 for(j in seq_along(radius)){
   count = 0 #create index
@@ -58,16 +58,16 @@ for(i in seq_along(hotels[[1]])) #Create a loop to generate pairwise distances
   if(min(d) < radius[j]){
     count = count +1 #Count the number of La Quinta next to a Denny's
   }
-  count.total[j] = count
+  rate.total[j] = count/length(hotels[[1]])
 }
 }
-count
-rate = count/length(hotels[[1]]) #Calculate the rate that a Denny's exists in 1-mile range of a La Quinta
-rate
+
+rate.total  #Calculate the rate that a Denny's exists in 1-mile range of a La Quinta
 
 
-df = data_frame(radius, count.total)
-ggplot(data = df, aes(x = df$radius, y = df$count.total)) + geom_point() + geom_line()
+
+df = data_frame(radius, rate.total)
+ggplot(data = df, aes(x = df$radius, y = df$rate.total)) + geom_point() + geom_line()
 hist(min.dist, breaks = 500, freq = FALSE, xlim = c(0,100), ylim = c(0, 0.4))
 ```
 
