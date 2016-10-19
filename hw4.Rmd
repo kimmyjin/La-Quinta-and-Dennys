@@ -54,6 +54,9 @@ Since the Spanish meaning of La Quinta is “next to Denny’s,” we use each L
 
 
 ```{r}
+load("data/dennys.Rdata") #Load Denny's Data
+load("data/lq.Rdata") #Load La Quinta Data
+
 count = 0 #create index
 for(i in seq_along(hotels[[1]])) #Create a loop to generate pairwise distances
   {
