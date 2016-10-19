@@ -38,6 +38,8 @@ For visualization, we generate two plots: one scatter plot and one histogram. Fo
 load("data/dennys.Rdata") #Load Denny's Data
 load("data/lq.Rdata") #Load La Quinta Data
 library(ggplot2)
+library(tibble)
+library(dplyr)
 
 radius = seq(0.1, 1, 0.1)   #create radius sequence 
 rate.total = rep(NA, 10)    # create a variable rate.total storing rate values
