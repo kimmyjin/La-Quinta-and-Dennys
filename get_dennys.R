@@ -1,8 +1,4 @@
-limit = 1000
-zip_code = 27705
-radius = 3000
-
-get_url = function(limit, zip_code, radius)
+get_url = function(limit, zip_code, radius)                #URL with specific limit, zip code, radius
 {
   paste0(
     "https://hosted.where2getit.com/dennys/responsive/ajax?&xml_request=%3Crequest%3E%3Cappkey%3E6B962D40-03BA-11E5-BC31-9A51842CA48B%3C%2Fappkey%3E%3Cformdata+id%3D%22locatorsearch%22%3E%3Cdataview%3Estore_default%3C%2Fdataview%3E%3Climit%3E",
