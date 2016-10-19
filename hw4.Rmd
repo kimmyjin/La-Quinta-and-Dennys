@@ -12,13 +12,12 @@ load("data/dennys.Rdata")
 load("data/lq.Rdata")
 
 count = 0
-for(i in seq_along(dennys.US[[1]])){
-  dist = rdist.earth.vec(matrix(c(as.numeric(dennys.US$long)[i],
-                                  as.numeric(dennys.US$lat)[i]),ncol=2),
-                         matrix(c(as.numeric(hotels$long),
-                                  as.numeric(hotels$lat)),ncol=2),
-                         miles=TRUE, 
-                         R = 6371)
+for(i in seq_along(hotels[[1]])){
+  dist = rdist.earth.vec(matrix(c(as.numeric(dennys.US$long),
+                                  as.numeric(dennys.US$lat)),ncol=2),
+                         matrix(c(as.numeric(hotels$long)[i],
+                                  as.numeric(hotels$lat)[i]),ncol=2),
+                         R=3959)
   if(min(dist) < 1){
     count = count +1
   }
@@ -29,18 +28,18 @@ rate
 ```
 ```{r}
 count = 0
-for(i in seq_along(dennys.US[[1]]))
+for(i in seq_along(hotels[[1]]))
   {
   rad <- pi/180
-  a1 <- as.numeric(dennys.US$lat)[i] * rad
-  a2 <- as.numeric(dennys.US$long)[i] * rad
-  b1 <- as.numeric(hotels$lat) * rad
-  b2 <- as.numeric(hotels$long) * rad
+  a1 <- as.numeric(dennys.US$lat) * rad
+  a2 <- as.numeric(dennys.US$long) * rad
+  b1 <- as.numeric(hotels$lat)[i] * rad
+  b2 <- as.numeric(hotels$long)[i] * rad
   d_long <- b2 - a2
   d_lat <- b1 - a1
   a <- (sin(d_lat/2))^2 + cos(a1) * cos(b1) * (sin(d_long/2))^2
   c <- 2 * atan2(sqrt(a), sqrt(1 - a))
-  R <- 6371
+  R <- 3959
   d <- R * c
   if(min(d) < 1){
     count = count +1
