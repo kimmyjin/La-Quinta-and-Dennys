@@ -4,6 +4,17 @@ author:
 date: "10/12/2016"
 output: html_document
 ---
+###Task 1 – Scraping La Quinta
+
+get_lq
+
+In order to get each La Quinta’s information, our first step was to obtain and download every La Quinta hotel’s HTML data. Specifically, we used the tool “SelectorGadget” and R package rvest to select each La Quinta’s webpage link from La Quinta's hotel listings page, which was relative address. Then, we created a directory, and used the absolute address to download each La Quinta hotel’s HTML file. We noticed duplication in La Quinta's hotel listings page, therefore function unique( ) was applied to avoid duplicated records.
+
+###Task2 – Scraping Denny’s
+
+get_dennys
+
+As mentioned, the Denny’s site uses 3rd party service to display its locations. After identifying some specific parts (limit,zip_code,radius) of its API, noticing that up to 1000 Denny’s could be found at a time, and googling the total number of Denny’s, we chose LA (zip code: 90210), Hawaii(zip code: 96701), Utah (zip code: 84101) and Washington (zip code: 20001) as anchorages/centers, set radius equal to 5000 miles to cover all Denny’s in US, and recorded their URLs. Then, we created a directory, and used the above URLs (absolute address) to download our four centers’ XML files, which covered all the location information of each Denny’s in US.
 
 ```{r}
 library(fields)
