@@ -43,6 +43,8 @@ library(stringr)
 library(tibble)
 library(dplyr)
 library(xml2)
+library(ggplot2)
+library(methods)
 
 radius = seq(0.1, 1, 0.1)   #create radius sequence 
 rate.total = rep(NA, 10)    # create a variable rate.total storing rate values
