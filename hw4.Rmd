@@ -39,10 +39,8 @@ For the histogram, x-axis represents the distance of all La Quinta to their near
 load("data/dennys.Rdata") #Load Denny's Data
 load("data/lq.Rdata") #Load La Quinta Data
 library(rvest)
-library(stringr)
 library(tibble)
 library(dplyr)
-library(xml2)
 library(ggplot2)
 library(methods)
 

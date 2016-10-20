@@ -3,7 +3,6 @@ library(rvest)
 library(stringr)
 library(tibble)
 library(dplyr)
-library(xml2)
 library(methods)
 
 files = dir("data/lq/", "html", full.names = TRUE)    #collect all files with full path from lq folder
