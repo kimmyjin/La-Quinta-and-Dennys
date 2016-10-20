@@ -38,9 +38,11 @@ For the histogram, x-axis represents the distance of all La Quinta to their near
 ```{r}
 load("data/dennys.Rdata") #Load Denny's Data
 load("data/lq.Rdata") #Load La Quinta Data
-library(ggplot2)
+library(rvest)
+library(stringr)
 library(tibble)
 library(dplyr)
+library(xml2)
 
 radius = seq(0.1, 1, 0.1)   #create radius sequence 
 rate.total = rep(NA, 10)    # create a variable rate.total storing rate values
