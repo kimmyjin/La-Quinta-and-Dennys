@@ -1,5 +1,8 @@
 library(rvest)
-
+library(stringr)
+library(tibble)
+library(dplyr)
+library(xml2)
 site = "http://www2.stat.duke.edu/~cr173/lq_test/www.lq.com/en/findandbook/"
 url = paste0(site,"hotel-listings.html")                        #get the url for each hotel
 
