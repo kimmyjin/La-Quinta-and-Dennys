@@ -23,6 +23,7 @@ for(hotel_page in hotel_pages)                                  #download from I
   download.file(url = hotel_url,      #a character string naming the URL of a resource to be downloaded
                 destfile = file.path("data/lq",hotel_page),     #save the files to data/lq
                 quiet = TRUE)
+  print(hotel_page)
 }
 
 
