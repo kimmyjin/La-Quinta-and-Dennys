@@ -2,7 +2,6 @@ library(rvest)   #read packages
 library(stringr)
 library(tibble)
 library(dplyr)
-library(xml2)
 library(methods)
 
 de.files = dir("data/dennys/", "xml", full.names = TRUE)    #collect all relative paths in dennys folder

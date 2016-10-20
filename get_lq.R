@@ -2,7 +2,6 @@ library(rvest)
 library(stringr)
 library(tibble)
 library(dplyr)
-library(xml2)
 library(methods)
 
 site = "http://www2.stat.duke.edu/~cr173/lq_test/www.lq.com/en/findandbook/"
